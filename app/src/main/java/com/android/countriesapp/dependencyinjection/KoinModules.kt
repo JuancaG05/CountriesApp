@@ -4,6 +4,7 @@ import com.android.countriesapp.data.countries.datasources.CountriesRemoteDataSo
 import com.android.countriesapp.data.countries.datasources.ICountriesRemoteDataSource
 import com.android.countriesapp.data.countries.repository.CountriesRepository
 import com.android.countriesapp.domain.countries.repository.ICountriesRepository
+import com.android.countriesapp.domain.countries.usecases.RetrieveCountriesUseCase
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -18,5 +19,5 @@ val dataModule = module {
 }
 
 val domainModule = module {
-
+    factoryOf(::RetrieveCountriesUseCase)
 }
