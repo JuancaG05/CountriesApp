@@ -5,12 +5,14 @@ import com.android.countriesapp.data.countries.datasources.ICountriesRemoteDataS
 import com.android.countriesapp.data.countries.repository.CountriesRepository
 import com.android.countriesapp.domain.countries.repository.ICountriesRepository
 import com.android.countriesapp.domain.countries.usecases.RetrieveCountriesUseCase
+import com.android.countriesapp.presentation.countries.CountriesViewModel
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val presentationModule = module {
-
+    viewModelOf(::CountriesViewModel)
 }
 
 val dataModule = module {
