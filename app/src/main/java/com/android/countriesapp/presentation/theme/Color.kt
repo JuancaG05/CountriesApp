@@ -1,4 +1,4 @@
-package com.android.countriesapp.ui.theme
+package com.android.countriesapp.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
