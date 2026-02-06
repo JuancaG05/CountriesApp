@@ -10,8 +10,12 @@ class CountriesRepository(
     private val countriesLocalDataSource: ICountriesLocalDataSource
 ) : ICountriesRepository {
     override suspend fun retrieveAllCountries(): List<Country> {
-        val countries = countriesRemoteDataSource.retrieveAllCountries()
-        countriesLocalDataSource.upsertCountries(countries)
-        return countries
+        return runCatching {
+            countriesLocalDataSource.getAllCountries()
+        }.getOrElse {
+            val countries = countriesRemoteDataSource.retrieveAllCountries()
+            countriesLocalDataSource.upsertCountries(countries)
+            countries
+        }
     }
 }

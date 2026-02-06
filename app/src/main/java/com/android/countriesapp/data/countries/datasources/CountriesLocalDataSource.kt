@@ -11,8 +11,25 @@ class CountriesLocalDataSource(
         countriesDao.upsertCountries(countries.map { it.toEntity() })
     }
 
+    override suspend fun getAllCountries(): List<Country> {
+        val countries = countriesDao.getAllCountries().map { it.toModel() }
+        if (countries.isEmpty()) {
+            throw IllegalStateException("Empty database")
+        } else {
+            return countries
+        }
+    }
+
     private fun Country.toEntity() =
         CountryEntity(
+            name = name,
+            flagImageUrl = flagImageUrl,
+            capital = capital,
+            currencies = currencies
+        )
+
+    private fun CountryEntity.toModel() =
+        Country(
             name = name,
             flagImageUrl = flagImageUrl,
             capital = capital,

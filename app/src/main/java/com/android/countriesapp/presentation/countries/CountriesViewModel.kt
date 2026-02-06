@@ -13,8 +13,8 @@ import kotlinx.coroutines.launch
 class CountriesViewModel(
     private val retrieveCountriesUseCase: RetrieveCountriesUseCase
 ) : ViewModel() {
-    private val _countries: MutableStateFlow<List<Country>> = MutableStateFlow(emptyList())
-    val countries: StateFlow<List<Country>> = _countries
+    private val _countries: MutableStateFlow<List<Country>?> = MutableStateFlow(emptyList())
+    val countries: StateFlow<List<Country>?> = _countries
 
     init {
         retrieveCountries()
@@ -22,8 +22,13 @@ class CountriesViewModel(
 
     fun retrieveCountries() {
         viewModelScope.launch(Dispatchers.IO) {
-            val countries = retrieveCountriesUseCase.run()
-            _countries.update { countries }
+            runCatching {
+                val countries = retrieveCountriesUseCase.run()
+                _countries.update { countries }
+            }.getOrElse {
+                _countries.update { null }
+            }
+
         }
     }
 }

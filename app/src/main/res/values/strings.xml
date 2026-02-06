@@ -3,4 +3,6 @@
     <string name="country_details">Country details</string>
     <string name="capitals">Capital(s): %1$s</string>
     <string name="currencies">Currencies: %1$s</string>
+    <string name="no_internet_available">No Internet available!</string>
+    <string name="retry">Retry!</string>
 </resources>
