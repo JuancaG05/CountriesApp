@@ -49,4 +49,5 @@ will make the app scale better and make the separation-of-concerns principle be 
 - [ ] Improve screen state management: in this case, we're not handling different screen status such as Loading, Failure, Success... But it should be done like that
 - [ ] Add failure management: we sticked to the ideal case (no errors from network) due to time limit, but this is an important thing to add as well, for example with a wrapper Result class
 - [ ] Improve navigation: it could be made more abstract, right now is very coupled to the MainActivity
+- [ ] Going further, e2e testing could be covered with Espresso
 - [ ] Some other things that I might forget adding here 💡
